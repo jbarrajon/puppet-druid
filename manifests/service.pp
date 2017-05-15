@@ -40,7 +40,11 @@ define druid::service (
     enable    => $service_enable,
     provider  => 'systemd',
     require   => File["/etc/systemd/system/druid-${name}.service"],
-    subscribe => Exec["Reload systemd daemon for new ${name} service file"],
+    subscribe => [
+      Exec["Reload systemd daemon for new ${name} service file"],
+      File["${::druid::config_directory}/${name}/runtime.properties"],
+      File["${::druid::config_directory}/common.runtime.properties"],
+    ],
   }
 
 }

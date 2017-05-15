@@ -1,0 +1,4 @@
+<% options = scope.lookupvar("::druid::config_options") -%>
+<% options.each do |key,value| -%>
+<%= key %>=<%= value %>
+<% end -%>

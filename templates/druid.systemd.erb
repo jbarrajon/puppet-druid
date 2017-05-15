@@ -1,0 +1,14 @@
+[Unit]
+Description=druid <%= @name %> service
+
+[Service]
+Type=simple
+WorkingDirectory=<%= scope.lookupvar("::druid::config_directory") %>/<%= @name %>/
+ExecStart=/usr/bin/java <%= @service_options['jvm_opts'] %> -classpath .:<%= scope.lookupvar("::druid::user_home") %>/druid/lib/* io.druid.cli.Main server <%= @name %>
+User=<%= scope.lookupvar('::druid::druid_user') %>
+Group=<%= scope.lookupvar('::druid::druid_group') %>
+SuccessExitStatus=130 143
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
