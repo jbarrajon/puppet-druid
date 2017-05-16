@@ -1,17 +1,19 @@
 #
 class druid (
-  $version          = $::druid::params::version,
-  $download_url     = $::druid::params::download_url,
-  $druid_group      = $::druid::params::druid_group,
-  $druid_user       = $::druid::params::druid_user,
-  $user_home        = $::druid::params::user_home,
-  $config_directory = $::druid::params::config_directory,
-  $config_template  = $::druid::params::config_template,
-  $config_options   = $::druid::params::config_options,
+  $version       = $::druid::params::version,
+  $download_url  = $::druid::params::download_url,
+  $manage_group  = $::druid::params::manage_group,
+  $druid_group   = $::druid::params::druid_group,
+  $manage_user   = $::druid::params::manage_user,
+  $druid_user    = $::druid::params::druid_user,
+  $manage_home   = $::druid::params::manage_home,
+  $user_home     = $::druid::params::user_home,
+  $manage_config = $::druid::params::manage_config,
+  $common_runtime_config_template = $::druid::params::common_runtime_config_template,
+  $common_runtime_config_options  = $::druid::params::common_runtime_config_options,
+  $log4j_config_template = $::druid::params::log4j_config_template,
+  $log4j_config_options  = $::druid::params::log4j_config_options,
 ) inherits ::druid::params {
-
-  $release_archive = "druid-${version}-bin.tar.gz"
-  $release_directory = "${user_home}/druid-${version}"
 
   include ::druid::install
   include ::druid::config
