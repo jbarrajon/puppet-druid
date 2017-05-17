@@ -9,7 +9,7 @@ class druid::config inherits ::druid {
       mode   => '0550',
     }
 
-    $runtime_config_options = $::druid::common_runtime_config_options
+    $runtime_config_options = hiera_hash('druid::common_runtime_config_options', $::druid::common_runtime_config_options)
 
     file { '/etc/druid/_common/common.runtime.properties':
       ensure  => file,
