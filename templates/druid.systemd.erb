@@ -8,8 +8,8 @@ WorkingDirectory=<%= scope.lookupvar('::druid::user_home') %>/druid/
 Environment=DRUID_CONF_DIR=/etc/druid DRUID_LOG_DIR=/var/log/druid DRUID_PID_DIR=/var/run/druid
 User=<%= scope.lookupvar('::druid::druid_user') %>
 Group=<%= scope.lookupvar('::druid::druid_group') %>
-ExecStart=bin/<%= @name %>.sh start
-ExecStop=bin/<%= @name %>.sh stop
+ExecStart=<%= scope.lookupvar('::druid::user_home') %>/druid/bin/<%= @name %>.sh start
+ExecStop=<%= scope.lookupvar('::druid::user_home') %>/druid/bin/<%= @name %>.sh stop
 Restart=on-abort
 
 [Install]
