@@ -55,4 +55,12 @@ class druid::install inherits ::druid {
     mode   => '0755',
   }
 
+  file { '/etc/tmpfiles.d/druid.conf':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => "d /var/run/druid 0755 ${::druid::druid_user} ${::druid::druid_group} -",
+  }
+
 }
